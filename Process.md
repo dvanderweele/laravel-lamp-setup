@@ -38,11 +38,11 @@ sudo systemctl reload apache2
 ```
 Disable directory listing by editing /etc/apache2/apache2.conf so the Directory /var/www/ section looks like so:
 ```
-\<Directory /var/www/\>
+<Directory /var/www/>
 	Options -Indexes FollowSymlinks
 	AllowOverride None
 	Require all granted
-\</Directory\>
+</Directory>
 ```
 Secure apache with mod_security and then restart the server:
 ```bash
@@ -51,9 +51,9 @@ sudo systemctl restart apache2
 ```
 Edit /etc/apache2/apache2.conf to limit the storage directory of your laravel app where images are uploaded to a max of 10 megabytes:
 ```
-\<Directory "/var/www/html/storage"\>
+<Directory "/var/www/html/storage">
 LimitRequestBody 10485760
-\</Directory\>
+</Directory>
 ```
 Note that you can setup a separate directory in /var/www instead of the html directory, perhaps named after your_domain.
 
@@ -114,14 +114,14 @@ sudo nano /etc/apache2/sites-available/your_domain.conf
 ```
 This is what the contents of that file should look like, making sure that ServerAdmin is a valid email the site administrator can access:
 ```
-\<VirtualHost *:80\>
+<VirtualHost *:80>
 	ServerAdmin webmaster@localhost
 	ServerName your_domain
 	ServerAlias www.your_domain
 	DocumentRoot /var/www/your_domain
 	ErrorLog ${APACHE_LOG_DIR}/error.log
 	CustomLog ${APACHE_LOG_DIR}/access.log combined
-\</VirtualHost\>
+</VirtualHost>
 ```
 Enable the site:
 ```bash
