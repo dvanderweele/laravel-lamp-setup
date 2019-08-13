@@ -22,6 +22,7 @@ I'll do my best to update this repo accordingly as newer versions of the above t
 
 - [This Medium Article](https://medium.com/@panjeh/install-laravel-on-ubuntu-18-04-with-apache-mysql-php7-lamp-stack-5512bb93ab3f)
 - [This Digital Ocean Community Article about LEMP Stack & Laravel](https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-laravel-with-lemp-on-ubuntu-18-04)
+- [This Digital Ocean Community Article about LEMP & Ubuntu 18.04](https://www.digitalocean.com/community/tutorials/how-to-install-linux-nginx-mysql-php-lemp-stack-ubuntu-18-04)
 - [The Official Laravel Docs](https://laravel.com/docs/5.8)
 - [This Digital Ocean Community Article about Composer & Ubuntu 18.04](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-composer-on-ubuntu-18-04)
 
