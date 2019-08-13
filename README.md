@@ -1,5 +1,7 @@
 # Setting Up Laravel on a LAMP Stack
 
+NOTE THAT CURRENTLY THIS PROCESS IS UNTESTED, SO DO YOUR OWN RESEARCH, ESPECIALLY FOR PRODUCTION ENVIRONMENTS.
+
 This guide is meant for assisting me in setting up Laravel, mostly on my development machine and in testing environments. You can do whatever you want with it. Obviously if you are deploying a laravel app to production, you may need a more serious take on the security aspect of the endeavor.
 
 Currently this guide uses the following technologies:
@@ -25,6 +27,9 @@ I'll do my best to update this repo accordingly as newer versions of the above t
 - [This Digital Ocean Community Article about LEMP & Ubuntu 18.04](https://www.digitalocean.com/community/tutorials/how-to-install-linux-nginx-mysql-php-lemp-stack-ubuntu-18-04)
 - [The Official Laravel Docs](https://laravel.com/docs/5.8)
 - [This Digital Ocean Community Article about Composer & Ubuntu 18.04](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-composer-on-ubuntu-18-04)
+- [This article about Hardening Apache on Ubuntu](https://hostadvice.com/how-to/how-to-harden-your-apache-web-server-on-ubuntu-18-04/)
+- [This Digital Ocean Community Article about Apache and Ubuntu 18.04](https://www.digitalocean.com/community/tutorials/how-to-install-the-apache-web-server-on-ubuntu-18-04)
+- [This Digital Ocean Community Article about Let's Encrypt on Ubuntu 18.04 with Apache](https://www.digitalocean.com/community/tutorials/how-to-secure-apache-with-let-s-encrypt-on-ubuntu-18-04)
 
 **DISCLAIMER: I am pretty well convinced of the legal legitimacy under fair use doctrine of the notion that personal notes such as these may be redistributed without fear of violation of copyrights. However, as is the case with all my notes, I am quite amenable to take-down requests.**
 
