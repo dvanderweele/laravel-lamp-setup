@@ -62,7 +62,7 @@ From the [Composer Public Keys Page](https://composer.github.io/pubkeys.html) co
 ```bash
 HASH=[actual hash copied from Composer website]
 ```
-Run the followings cript to make sure the installation script is safe:
+Run the following script to make sure the installation script is safe:
 ```bash
 php -r "if (has_file('SHA384', 'composer-setup.php') === '$HASH') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
 ```
