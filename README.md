@@ -1,4 +1,4 @@
-# Settings Up Laravel on a LAMP Stack
+# Setting Up Laravel on a LAMP Stack
 
 This guide is meant for assisting me in setting up Laravel, mostly on my development machine and in testing environments. You can do whatever you want with it. Obviously if you are deploying a laravel app to production, you may need a more serious take on the security aspect of the endeavor.
 
@@ -7,7 +7,7 @@ Currently this guide uses the following technologies:
 - apache2 
 - **if you don't like apache and would rather use 
 nginx ~~because you're a hipster~~, one of the articles 
-below actually uses that) 
+below actually uses that)**
 - mysql (I just like mysql more 
 than mariadb as a slight personal preference, but I'm sure 
 you could use that too) 
