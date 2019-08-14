@@ -3,7 +3,7 @@
 Install a few dependencies after initial server setup:
 ```bash
 sudo apt update
-sudo apt install -y git curl wget zip unzip apache2 mysql-server php libapache2-mod-php php-mysql php7.2-common php7.2-cli php7.2-gd php7.2-mysql php7.2-curl php7.2-intl php7.2-mbstring php7.2-bcmath php7.2-imap php7.2-xml php7.2-zip
+sudo apt install -y git curl wget zip unzip apache2 mysql-server php libapache2-mod-php php-mysql php7.2-common php7.2-cli php7.2-gd php7.2-mysql php7.2-curl php7.2-intl php7.2-mbstring php7.2-bcmath php7.2-imap php7.2-xml php7.2-zip supervisor
 ```
 Make sure apache2 is running and enabled:
 ```bash
@@ -36,10 +36,10 @@ Reload Apache:
 ```bash
 sudo systemctl reload apache2
 ```
-Disable directory listing by editing /etc/apache2/apache2.conf so the Directory /var/www/ section looks like so:
+Disable directory listing and Server Side Includes by editing /etc/apache2/apache2.conf so the Directory /var/www/ section looks like so:
 ```
 <Directory /var/www/>
-	Options -Indexes FollowSymlinks
+	Options -Indexes -Includes FollowSymlinks
 	AllowOverride None
 	Require all granted
 </Directory>
@@ -118,7 +118,12 @@ This is what the contents of that file should look like, making sure that Server
 	ServerAdmin webmaster@localhost
 	ServerName your_domain
 	ServerAlias www.your_domain
-	DocumentRoot /var/www/your_domain
+	DocumentRoot /var/www/html/your_domain
+	<Directory /var/www/html/your_site/>
+		Options -Indexes -Includes FollowSymlinks
+		AllowOverride None
+		Require all granted
+	</Directory>
 	ErrorLog ${APACHE_LOG_DIR}/error.log
 	CustomLog ${APACHE_LOG_DIR}/access.log combined
 </VirtualHost>
@@ -202,5 +207,40 @@ DB_PASSWORD=secret
 ```
 To state the obvious, your password doesn't literally need to be *secret*.
 
-
+Assign ownership of your site directory and files to apache user:
+```bash
+sudo chown www-data: -R /var/www/html/your_site/
+```
+If you're using Laravel's task scheduling feature, you need to add a cron entry for laravel:
+```bash
+sudo nano /etc/crontab
+```
+Put in the following cron entry:
+```
+* * * * * www-data cd /var/www/html/your_site/ && php artisan schedule:run >> /dev/null 2>&1
+```
+If you're going to queue anything in Laravel, you'll want to configure Supervisor (installed above), to keep the queue listener going:
+```bash
+cd /et/supervisor/conf.d/
+touch queue-woker.conf
+nano queue-worker.conf
+```
+The following should the be the config contents of queue-worker.conf:
+```
+[program:queue-worker]
+process_name=%(program_name)s_%(proces_num)02d
+command=php /var/www/html/your_site/artisan queue:work
+autostart=true
+autorestart=true
+user=www-data
+numprocs=8
+redirect_stderr=true
+stdout_logfile=/var/www/html/worker.log
+```
+Next make sure supervisor reads the new config and updates before starting the queue-worker:
+```bash
+sudo supervisorctl reread
+sudo supervisorctl update
+sudo supervisorctl start queue-worker:*
+```
 
